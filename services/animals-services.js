@@ -1,7 +1,7 @@
 const {Animal} = require("../models/Animal");
 const {MongoClient, ObjectId} = require('mongodb');
 
-const URI = "mongodb://admin:secret@127.0.0.1:27017";
+const URI = "mongodb://mongoadmin:secret@127.0.0.1:27017";
 const CLIENT = new MongoClient(URI);
 const DB_NAME = "petstore";
 const COLLECTION = "pets";

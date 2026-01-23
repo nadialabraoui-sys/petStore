@@ -9,32 +9,39 @@ export class EventManager{
         const email = document.getElementById("idEmail").value;
         const password = document.getElementById("idPassword").value;
 
-        ValidationManager.mostrarError(email, form);
 
         const allUsers = await UserServicesFront.get();
 
         if(allUsers.length === 0){
-            ValidationManager.usuarioInexistente(email, form);
-        }else{
+
+            alert("no hay usuarios");
+        }
+
+
+
             allUsers.forEach(user => {
                 if(user.email === email && user.password === password){
 
-                    let session = ["user.email", true];
+                    let session = [`${user.email}`, true];
                     StorageManager.save("user", session);
+
                     window.location.reload();
 
-                }else{
-
-                    ValidationManager.usuarioInexistente(email, form);
                 }
             });
         }
 
-    }
+        static async validRegister(form) {
 
-     static async toggleLogin(){}
+            const email = document.getElementById("email");
+            const password = document.getElementById("password").value;
 
 
+                await UserServicesFront.post(email.value, password);
+                window.location.reload();
+
+
+        }
 
 
       static async deleteCard(id){

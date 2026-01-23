@@ -79,9 +79,11 @@ export class DomFacade{
 
   <div>
     <button type="submit">Iniciar Sesión</button>
-    <button id="idGoRegister">Registrarse</button>
-  </div>
-`;
+    
+     </div>
+   </form>
+     <button id="idGoRegister">Registrarse</button>
+                `;
 
 
     }
@@ -95,8 +97,8 @@ export class DomFacade{
             <label htmlFor="password">Contraseña</label>
             <input type="password" id="password" name="password" required/>
             <button type="submit">Registrarse</button>
-            <button id="idGoLogin">Login</button>
-        </form>`
+        </form>
+`
     }
 
 }

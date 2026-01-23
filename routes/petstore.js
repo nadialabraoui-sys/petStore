@@ -5,8 +5,6 @@ const e = require("express");
 const UserService = require("../services/users-services");
 
 
-
-
 router.get("/usuario", async function (req, res) {
   try{
     const item = await UserService.get();

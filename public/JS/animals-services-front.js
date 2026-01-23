@@ -1,6 +1,6 @@
 "use strict"
 
-const URI = "http://localhost:3000/petstore/";
+const URI = "http://localhost:3000/petstore";
 export class AnimalsServicesFront{
 
         static async get(){

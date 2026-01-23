@@ -16,11 +16,12 @@ export class UserServicesFront{
 
            let data = await res.json();
 
-            for(let item of data){
+            for(let item of await data){
                 allItems.push(item);
             }
 
             return allItems;
+
         }catch(e){
             console.log(e);
             return [];
