@@ -1,5 +1,5 @@
 ### Get all 
-GET http://localhost:3000/petstore
+GET http://localhost:3000/petstore/usuario
 Accept: application/json
 
 ### Get by ID
@@ -10,7 +10,7 @@ Accept: application/json
 DELETE http://localhost:3000/animals/6972c50951ce428f396ee9f9
 Accept: application/json
 ### Create new 
-POST http://localhost:3000/users
+POST http://localhost:3000/petstore/usuario
 Content-Type: application/json
 
 {

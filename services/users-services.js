@@ -3,7 +3,7 @@ const {MongoClient, ObjectId} = require('mongodb');
 
 const URI = "mongodb://admin:secret@127.0.0.1:27017";
 const DB_NAME = "petstore";
-const COLLECTION = "users";
+const COLLECTION = "usuario";
 
 class UserServices {
   static async get() {
@@ -49,6 +49,9 @@ class UserServices {
 
       const item = new User(email, password);
 
+      if(item === undefined || item === null || item === "" || item === false) {
+        console.log("No hay encontrado");
+      }
       return await collection.insertOne(item);
 
     } finally {

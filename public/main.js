@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async function(e) {
         const loginForm = document.getElementById("loginForm");
 
         loginForm.addEventListener("submit", async function(e) {
-
+            e.preventDefault();
            await EventManager.validLogin(loginForm);
 
         });
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async function(e) {
                 const newAnimalForm = document.getElementById("animalForm");
 
                 newAnimalForm.addEventListener("submit", async function(e) {
+                    e.preventDefault();
                     await EventManager.newCard();
                     window.location.reload();
                 })

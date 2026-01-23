@@ -1,6 +1,6 @@
 "use strict"
 
-const URI = "http://localhost:3000/petstore/user";
+const URI = "http://localhost:3000/petstore/usuario";
 export class UserServicesFront{
 
     static async get(){

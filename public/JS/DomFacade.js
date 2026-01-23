@@ -27,7 +27,7 @@ export class DomFacade{
 
         container.innerHTML = "";
 
-      return `<form id="animalForm" method="post" action="">
+      return `<form id="animalForm" method="post">
             <h2>Agregar Animal</h2>
             <div>
                 <label for="name">Nombre:</label>
@@ -64,7 +64,7 @@ export class DomFacade{
 
     static login() {
 
-        return `<form id="loginForm" method="post" action="">
+        return `<form id="loginForm" method="post">
   <h2>Iniciar Sesión</h2>
 
   <div>
@@ -88,7 +88,7 @@ export class DomFacade{
 
 
     static register() {
-      return  `<form id="registerForm" method="post" action="">
+      return  `<form id="registerForm" method="post">
             <h2>Registro</h2>
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" required/>
