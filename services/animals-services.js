@@ -1,78 +1,91 @@
-const uri = "mongodb://admin:secret@127.0.0.1:27017";
+const Animals = require("../models/Animal");
+const {MongoClient, ObjectId} = require('mongodb');
+
+const URI = "mongodb://admin:secret@127.0.0.1:27017";
+const CLIENT = new MongoClient(URI);
+const DB_NAME = "petstore";
+const COLLECTION = "pets";
 
 
-class AnimalsServices {
+
+export class AnimalsServices {
+
+  async getConnection(){
+    await CLIENT.connect();
+    const database = CLIENT.db(DB_NAME);
+    return database.collection(COLLECTION);
+  }
   static async get() {
-
-    const client = new MongoClient(uri);
     try {
-      await client.connect();
-      const database = client.db("petstore");
-      const collection = database.collection("pets");
 
-      const allRows = await collection.find().toArray();
+      const collection = await getConnection();
 
-      return allRows;
+      return await collection.find().toArray();
+
     } finally {
-      await client.close();
+      await CLIENT.close();
     }
   }
 
   static async getById(id) {
-      const client = new MongoClient(uri);
       try {
-        await client.connect();
-        const database = client.db("petstore");
-        const collection = database.collection("pets");
+        if (!ObjectId.isValid(id)) {
+          throw new Error("Non valid ID");
+        }
+
+        const collection = await getConnection();
 
         return await collection.findOne({_id: new ObjectId(id)});
        
       } finally {
-        await client.close();
+        await CLIENT.close();
       }
     }
 
   static async post(image, name, description, status) {
-    const client = new MongoClient(uri);
     try {
-      await client.connect();
-        const database = client.db("petstore");
-        const collection = database.collection("pets");
+      const collection = await getConnection();
 
-      return await collection.insertOne({image: image, name: name, description: description, status: status});
+       const item = new Animals(image, name, description, status);
+
+      return await collection.insertOne(item);
 
     } finally {
-      await client.close();
+      await CLIENT.close();
     }
 
   }
 
 
   static async delete(id) {
-    const client = new MongoClient(uri);
     try {
-            await client.connect();
-        const database = client.db("petstore");
-        const collection = database.collection("pets");
+      if (!ObjectId.isValid(id)) {
+        throw new Error("Non valid ID");
+      }
+      const collection = await getConnection();
+
 
       return await collection.deleteOne({_id: new ObjectId(id)});
 
     } finally {
-      await client.close();
+      await CLIENT.close();
     }
   }
 
-  static async update(image, name, description, status) {
-    const client = new MongoClient(uri);
+  static async update(id, image, name, description, status) {
     try {
-              await client.connect();
-        const database = client.db("petstore");
-        const collection = database.collection("pets");
+
+      if (!ObjectId.isValid(id)) {
+        throw new Error("ID no válido");
+      }
+      const collection = await getConnection();
+
+        new Animals(image, name, description, status);
 
       return await collection.updateOne({_id: new ObjectId(id)}, {$set: {image: image, name: name, description: description, status: status}});
 
     } finally {
-      await client.close();
+      await CLIENT.close();
     }
   }
 }

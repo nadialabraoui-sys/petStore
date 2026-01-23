@@ -1,5 +1,6 @@
- 
- export class User{
+"use strict"
+
+export class User{
 
     constructor(email, password){
         this.email = email;

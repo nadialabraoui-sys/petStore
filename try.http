@@ -1,0 +1,33 @@
+### Get all 
+GET http://localhost:3000/users
+Accept: application/json
+
+### Get by ID
+GET http://localhost:3000/animals/6972c59710e43b5baf78a7f8
+Accept: application/json
+
+### Delete by ID
+DELETE http://localhost:3000/animals/6972c865b630c5ccc56fadc8
+Accept: application/json
+
+### Create new 
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "nadia@gmail.com",
+  "password": "1234"
+
+}
+
+### Update by ID
+PUT http://localhost:3000/tasks/1d681246-608f-457f-99dd-7155e36ba760
+Content-Type: application/json
+
+{
+  "id":"1d681246-608f-457f-99dd-7155e36ba760",
+  "nombre": "Honda",
+  "fecha": "CB500F",
+  "descripcion": 6500
+
+}
