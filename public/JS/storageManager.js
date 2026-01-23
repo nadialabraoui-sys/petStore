@@ -13,7 +13,7 @@ export class StorageManager {
 
     static load(clave){
         //devuelve una clave del local storage
-        return JSON.parse(localStorage.getItem(clave)) || false;
+        return JSON.parse(localStorage.getItem(clave)) || [];
     }
 
     static  deleteAll() {
@@ -69,3 +69,4 @@ export class StorageManager {
     }
 
 }
+

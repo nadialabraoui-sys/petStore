@@ -21,4 +21,4 @@ class Animal {
     }
 }
 
-module.exports = Animal ;
+module.exports = {Animal};

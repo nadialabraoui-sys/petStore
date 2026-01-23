@@ -26,7 +26,7 @@ class UserServices {
     const client = new MongoClient(URI);
     try {
       if (!ObjectId.isValid(id)) {
-        throw new Error("Non valid ID");
+        throw new Error("ID no válido");
       }
 
       await client.connect();
@@ -62,7 +62,7 @@ class UserServices {
     const client = new MongoClient(URI);
     try {
       if (!ObjectId.isValid(id)) {
-        throw new Error("Non valid ID");
+        throw new Error("ID no válido");
       }
       await client.connect();
       const database = client.db(DB_NAME);

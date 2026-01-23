@@ -1,5 +1,5 @@
 ### Get all 
-GET http://localhost:3000/users
+GET http://localhost:3000/petstore
 Accept: application/json
 
 ### Get by ID
@@ -7,9 +7,8 @@ GET http://localhost:3000/animals/6972c59710e43b5baf78a7f8
 Accept: application/json
 
 ### Delete by ID
-DELETE http://localhost:3000/animals/6972c865b630c5ccc56fadc8
+DELETE http://localhost:3000/animals/6972c50951ce428f396ee9f9
 Accept: application/json
-
 ### Create new 
 POST http://localhost:3000/users
 Content-Type: application/json

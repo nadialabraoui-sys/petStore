@@ -7,26 +7,27 @@ export class DomFacade{
         container.innerHTML = "";
     }
 
-    static cards( pet){
+    static cards(pet){
 
-        return `<article id="pet-card">
-                            <card>
+        return `<article class="pet-card">
+                            
                             <h1>${pet.name}</h1>
                             <figure id="idImage"><img src="${pet.image}"></figure>
                             <span>${pet.description}</span>
                             <span>${pet.status}</span>
                             <button id="idEdit">Edit</button>
                             <button id="idDelete">Delete</button>
-                            </card>
+                       
                             </article>`;
-
 
     }
 
 
     static newAnimal(container) {
 
-      let form =  `<form id="animalForm">
+        container.innerHTML = "";
+
+      return `<form id="animalForm" method="post" action="">
             <h2>Agregar Animal</h2>
             <div>
                 <label for="name">Nombre:</label>
@@ -40,19 +41,7 @@ export class DomFacade{
 
             <div>
                 <label for="img">URL de la imagen:</label>
-                <input type="url" id="img" name="img" placeholder="https://..." required>
-            </div>
-
-
-            <div>
-                <label for="type">Tipo:</label>
-                <select id="type" name="type" required>
-                    <option value="">Selecciona tipo</option>
-                    <option value="Perro">Perro</option>
-                    <option value="Gato">Gato</option>
-                    <option value="Ave">Ave</option>
-                    <option value="Otro">Otro</option>
-                </select>
+                <input type="text" id="img" name="img" placeholder="https://..." required>
             </div>
 
             <div>
@@ -69,39 +58,45 @@ export class DomFacade{
             </div>
         </form`;
 
-      container.appendChild(form);
 
     }
 
 
     static login() {
 
-        return `<form id="loginForm">
+        return `<form id="loginForm" method="post" action="">
   <h2>Iniciar Sesión</h2>
 
-  <!-- Usuario / Email -->
   <div>
     <label for="username">Usuario o Email:</label>
-    <input type="text" id="username" name="username" placeholder="Tu usuario" required>
+    <input type="email" id="idEmail" name="email" required>
   </div>
 
-  <!-- Contraseña -->
   <div>
     <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" placeholder="Tu contraseña" required minlength="6">
+    <input type="password" id="idPassword" name="password" placeholder="Tu contraseña" required>
   </div>
 
-  <!-- Botón -->
   <div>
     <button type="submit">Iniciar Sesión</button>
+    <button id="idGoRegister">Registrarse</button>
   </div>
-
-  <!-- Mensaje de error -->
-  <p id="loginError" style="color: red; display: none;">Usuario o contraseña incorrectos</p>
-</form>
 `;
 
 
+    }
+
+
+    static register() {
+      return  `<form id="registerForm" method="post" action="">
+            <h2>Registro</h2>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" required/>
+            <label htmlFor="password">Contraseña</label>
+            <input type="password" id="password" name="password" required/>
+            <button type="submit">Registrarse</button>
+            <button id="idGoLogin">Login</button>
+        </form>`
     }
 
 }

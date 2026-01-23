@@ -1,9 +1,11 @@
 "use strict"
 
-export class User{
+class User{
 
     constructor(email, password){
         this.email = email;
         this.password = password;
     }
  }
+
+ module.exports = User;

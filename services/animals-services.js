@@ -1,4 +1,4 @@
-const Animals = require("../models/Animal");
+const {Animal} = require("../models/Animal");
 const {MongoClient, ObjectId} = require('mongodb');
 
 const URI = "mongodb://admin:secret@127.0.0.1:27017";
@@ -8,9 +8,9 @@ const COLLECTION = "pets";
 
 
 
-export class AnimalsServices {
+class AnimalsServices {
 
-  async getConnection(){
+ static async getConnection(){
     await CLIENT.connect();
     const database = CLIENT.db(DB_NAME);
     return database.collection(COLLECTION);
@@ -18,7 +18,7 @@ export class AnimalsServices {
   static async get() {
     try {
 
-      const collection = await getConnection();
+      const collection = await AnimalsServices.getConnection();
 
       return await collection.find().toArray();
 
@@ -33,7 +33,7 @@ export class AnimalsServices {
           throw new Error("Non valid ID");
         }
 
-        const collection = await getConnection();
+        const collection = await AnimalsServices.getConnection();
 
         return await collection.findOne({_id: new ObjectId(id)});
        
@@ -44,11 +44,16 @@ export class AnimalsServices {
 
   static async post(image, name, description, status) {
     try {
-      const collection = await getConnection();
+      const collection = await AnimalsServices.getConnection();
 
-       const item = new Animals(image, name, description, status);
+       const item = new Animal(image, name, description, status);
 
-      return await collection.insertOne(item);
+      const result = await collection.insertOne(item);
+
+        return {
+            _id: result.insertedId,
+            ...item
+        };
 
     } finally {
       await CLIENT.close();
@@ -62,7 +67,7 @@ export class AnimalsServices {
       if (!ObjectId.isValid(id)) {
         throw new Error("Non valid ID");
       }
-      const collection = await getConnection();
+      const collection = await AnimalsServices.getConnection();
 
 
       return await collection.deleteOne({_id: new ObjectId(id)});
@@ -78,9 +83,9 @@ export class AnimalsServices {
       if (!ObjectId.isValid(id)) {
         throw new Error("ID no válido");
       }
-      const collection = await getConnection();
+      const collection = await AnimalsServices.getConnection();
 
-        new Animals(image, name, description, status);
+        new Animal(image, name, description, status);
 
       return await collection.updateOne({_id: new ObjectId(id)}, {$set: {image: image, name: name, description: description, status: status}});
 

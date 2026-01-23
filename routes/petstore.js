@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 let AnimalsService = require("../services/animals-services");
 const e = require("express");
+const UserService = require("../services/users-services");
 
 router.get("/:id", async function(req, res) {
   try{
@@ -65,5 +66,35 @@ router.put("/:id", async function (req, res)  {
     res.status(500).send(e.message);
   }
 });
+
+
+//usuarios
+
+router.get("/user", async function (req, res) {
+  try{
+    const item = await UserService.get();
+    if (item.length === 0) {
+      res.status(404).send("Not Found");
+    } else {
+      res.json(item);}
+  }catch(e) {
+    res.status(500).send(e.message);
+  }
+});
+
+
+
+/*
+router.post("/users", async function (req, res) {
+  try {
+    if(!req.body.email || !req.body.password) return res.status(400).send("Bad request");
+
+    const item = await UserService.post(req.body.email, req.body.password);
+    res.status(201).json(item);
+  } catch(e) {
+    res.status(500).send(e.message);
+  }
+});*/
+
 
 module.exports = router;
